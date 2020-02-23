@@ -6,4 +6,4 @@ const isEmpty = value =>
 
 module.exports = isEmpty;
 
-// Code credit to KalAcademy 
+// Code credit: KalAcademy 
