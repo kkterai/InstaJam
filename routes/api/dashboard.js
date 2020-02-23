@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-// User model
-const User = require('../../models/User');
+// Dashboard model
+const Dashboard = require('../../models/Dashboard');
 
 // TODO: Validation
 
 router.get("/test", (req,res) => 
     res.json({
-        msg: 'User api works!'
+        msg: 'Dashboard api works!'
     })
 );
 
