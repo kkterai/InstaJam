@@ -5,13 +5,9 @@ const gravatar = require("gravatar");
 // User model
 const User = require('../../models/User');
 
-// TODO: Validation
+// Load input validation
+const validateRegisterInput = require('../../validation/register');
 
-router.get("/test", (req,res) => 
-    res.json({
-        msg: 'User api works!'
-    })
-);
 
 // @route   POST api/users/register
 // @desc    Register user
