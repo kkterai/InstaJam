@@ -21,15 +21,15 @@ i.Nav {
   z-index: 2;
   -webkit-transition: height 0.2s ease-in-out;
   transition: height 0.2s ease-in-out;
-  height: 77px;
+  height: 54px;
 }
 .Nav-menus {
   display: flex;
   flex-direction: row;
-  height: 77px;
+  height: 54px;
   width: 70%;
-  margin: 0 auto;
-  padding: 26px 40px;
+  margin: 0;
+  padding: 0px 20px;
 }
 .Nav-brand-logo {
   display: block;
@@ -39,5 +39,6 @@ i.Nav {
   background-repeat: no-repeat;
   height: 35px;
   width: 125px;
-  text-indent: -1000%
+  text-indent: -1000%;
+  margin-top: 7px;
 }
