@@ -23,6 +23,7 @@ i.Nav {
   transition: height 0.2s ease-in-out;
   height: 54px;
 }
+
 .Nav-menus {
   display: flex;
   flex-direction: row;
@@ -32,6 +33,7 @@ i.Nav {
   padding: 0px 20px;
   border: 0.1px solid rgb(221, 217, 217);
 }
+
 .Nav-brand-logo {
   display: block;
   background-position: -230px 0px;
@@ -42,4 +44,90 @@ i.Nav {
   width: 125px;
   text-indent: -1000%;
   margin-top: 7px;
+}
+
+.logo {
+  background-image: url(./img/Instagram-text.png);
+}
+
+.display-4 {
+  color: gray
+}
+
+/* Forms */
+.myform {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 1.1rem;
+  outline: 0;
+  max-width: 500px;
+}
+
+.tx-tfm {
+  text-transform:uppercase;
+}
+
+.mybtn {
+  border-radius:50px;
+}
+
+.login-or {
+  position: relative;
+  color: #aaa;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.insta {
+  color: #999;
+  color: rgba(var(--f52,153,153,153),1);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0 40px 10px;
+  text-align: center;
+}
+.span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #fff;
+  width: 50px;
+  text-align: center;
+}
+
+.hr-or {
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.google {
+  color:#666;
+  width:100%;
+  height:40px;
+  text-align:center;
+  outline:none;
+  border: 1px solid lightgrey;
+}
+
+form .error {
+  color: #ff0000;
+}
+
+#second {
+  display:none;
 }
