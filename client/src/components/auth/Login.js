@@ -30,12 +30,13 @@ class Login extends Component {
 
     axios
       .post("/api/users/login", user)
-      .then(token => console.log(token))
-      .catch(err => console.log(err.response.data));
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({errors: err.response.data}));
   }
 
   render() {
     const { errors } = this.state;
+    
     return (
       <div className="login">
         <div className="container">
