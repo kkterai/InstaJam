@@ -55,3 +55,17 @@ i.Nav {
   font-weight: bold;
   font-size: 12px;
 }
+
+/* Signup Page */
+.signin-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.display-4 {
+  color: gray;
+  font-size: 20px;
+  font-weight: bold;
+}
