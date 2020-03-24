@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+/* Navbar */
 i.Nav {
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
@@ -23,6 +24,7 @@ i.Nav {
   transition: height 0.2s ease-in-out;
   height: 54px;
 }
+
 .Nav-menus {
   display: flex;
   flex-direction: row;
@@ -32,6 +34,7 @@ i.Nav {
   padding: 0px 20px;
   border: 0.1px solid rgb(221, 217, 217);
 }
+
 .Nav-brand-logo {
   display: block;
   background-position: -230px 0px;
@@ -42,4 +45,13 @@ i.Nav {
   width: 125px;
   text-indent: -1000%;
   margin-top: 7px;
+}
+
+/* Footer */
+
+.footer {
+  background-color: #fff;
+  color: gray;
+  font-weight: bold;
+  font-size: 12px;
 }
