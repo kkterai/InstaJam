@@ -3,6 +3,9 @@ import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import classnames from "classnames";
 import logo from '../../img/Instagram-text.png'
+import setAuthToken from '../../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+
 
 class Login extends Component {
   constructor() {
@@ -31,8 +34,24 @@ class Login extends Component {
 
     axios
       .post("/api/users/login", user)
-      .then(res => this.props.history.push('/home'))
+      .then(
+        res => {this.props.history.push('/home')
+        //Save to localstorage
+        const { token } = res.data;
+        //set token to ls
+        localStorage.setItem("jwtToken", token);
+
+        //Set token to authheader
+        setAuthToken(token);
+
+        //Decode token to get the user data
+        var decoded = jwt_decode(token);
+
+        console.log(decoded);
+      })
       .catch(err => this.setState({errors: err.response.data}));
+
+    
   }
 
   render() {
