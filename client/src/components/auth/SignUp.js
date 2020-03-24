@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import classnames from 'classnames';
+import logo from '../../img/Instagram-text.png'
 
 class SignUp extends Component {
   constructor() {
@@ -46,8 +47,7 @@ render() {
             <div className="container">
             <div className="row">
                 <div className="col-md-8 m-auto">
-                <div className="logo"> 
-                </div>
+                <img className="signin-logo" src={logo} alt="Logo"></img>
                 <h3 className="display-4 text-center insta">Sign up to see photos and videos from your friends.</h3>
                 <form noValidate onSubmit={this.onSubmit}>
                     <div className="form-group">
