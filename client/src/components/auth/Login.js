@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import classnames from "classnames";
 import logo from '../../img/Instagram-text.png'
@@ -30,7 +31,7 @@ class Login extends Component {
 
     axios
       .post("/api/users/login", user)
-      .then(res => console.log(res.data))
+      .then(res => this.props.history.push('/home'))
       .catch(err => this.setState({errors: err.response.data}));
   }
 
@@ -75,7 +76,6 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div>
-
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
@@ -86,4 +86,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default (withRouter(Login));

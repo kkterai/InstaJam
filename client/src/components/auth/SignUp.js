@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import classnames from 'classnames';
 import logo from '../../img/Instagram-text.png'
@@ -32,16 +33,23 @@ onSubmit(e) {
         password2: this.state.password2,
         errors: {}
     }
-
+  
     axios
         .post('/api/users/register', newUser)
-        .then(res => console.log(res.data))
+        .then(res => this.props.history.push('/login'))
         .catch(err => this.setState({errors: err.response.data}));
+   
+}
+
+componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
 }
 
 render() {
     const {errors} = this.state;
-
+    console.log(this.props.history)
     return (
         <div className="signup">
             <div className="container">
@@ -117,4 +125,4 @@ render() {
   }
 }
 
-export default SignUp;
+export default (withRouter(SignUp));
