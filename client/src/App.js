@@ -1,6 +1,8 @@
 import React, { useState }  from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import {Provider} from 'react-redux';
 
+import store from './store';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './components/layout/Home';
@@ -18,19 +20,21 @@ function App() {
   const [token, setToken] = useState(existingToken)
 
     return (
-      <div className="App">
+      <Provider store={store}>
         <Router>
-          <Navbar token={token} setToken={setToken} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login">
-            <Login setToken={setToken} />
-          </Route>
-          <Route exact path="/home">
-            <Home />
-          </Route>
+          <div className="App">
+            <Navbar token={token} setToken={setToken} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/login">
+                <Login setToken={setToken} />
+              </Route>
+              <Route exact path="/home">
+                <Home />
+              </Route>
+            <Footer token={token}/>
+          </div>
         </Router>
-        <Footer token={token}/>
-      </div>
+      </Provider>
     );
   
 }
