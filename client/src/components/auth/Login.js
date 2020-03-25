@@ -35,19 +35,24 @@ class Login extends Component {
     axios
       .post("/api/users/login", user)
       .then(
-        res => {this.props.history.push('/home')
+        res => {
+        
         //Save to localstorage
         const { token } = res.data;
-        //set token to ls
+        //set token to ls and local app state
         localStorage.setItem("jwtToken", token);
+        this.props.setToken(token);
 
         //Set token to authheader
         setAuthToken(token);
-
+        
         //Decode token to get the user data
         var decoded = jwt_decode(token);
-
+        
+        //TODO: implement Redux to manage global app state
         console.log(decoded);
+
+        this.props.history.push('/home')
       })
       .catch(err => this.setState({errors: err.response.data}));
   }
