@@ -49,7 +49,7 @@ componentWillReceiveProps(nextProps) {
 
 render() {
     const {errors} = this.state;
-    console.log(this.props.history)
+    
     return (
         <div className="signup">
             <div className="container">

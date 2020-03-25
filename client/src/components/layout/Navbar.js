@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
 import '../../index.css';
 import isLoggedIn from '../../validation/is-logged-in'
+import setAuthToken from '../../utils/setAuthToken';
 
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  
+  logout = click => {
+    // Remove token from localStorage
+    localStorage.removeItem('jwtToken');
+    // Remove auth header for future requests
+    setAuthToken(false);
+
+    this.props.history.push('/login')
+  }
+  
+
   render() {
+    
     return (
       isLoggedIn(localStorage.jwtToken) ?
       (<div>
@@ -15,9 +28,14 @@ export default class Navbar extends Component {
                   Instagram
                 </a>
               </div>
+              <div className="logout">
+                <button className="btn" onClick={this.logout}>Log Out</button>
+              </div>
             </div>
           </nav>
       </div>) : null
     )
   }
 }
+
+export default Navbar;

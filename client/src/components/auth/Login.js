@@ -50,8 +50,6 @@ class Login extends Component {
         console.log(decoded);
       })
       .catch(err => this.setState({errors: err.response.data}));
-
-    
   }
 
   render() {

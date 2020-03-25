@@ -47,6 +47,12 @@ i.Nav {
   margin-top: 7px;
 }
 
+.Nav button {
+  position: absolute; 
+  right: 0;
+  margin: 10px 20px;
+}
+
 /* Footer */
 
 .footer {
