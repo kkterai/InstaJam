@@ -1,6 +1,4 @@
 const isLoggedIn = value =>
-    value !== undefined
+    value !== null
 
 module.exports = isLoggedIn;
-
-// Parameter given is localStorage.token
