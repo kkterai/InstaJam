@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import '../../index.css';
 import isLoggedIn from '../../validation/is-logged-in'
 import setAuthToken from '../../utils/setAuthToken';
@@ -8,18 +9,20 @@ class Navbar extends Component {
   
   logout = click => {
     // Remove token from localStorage
+    this.props.setToken(null);
     localStorage.removeItem('jwtToken');
     // Remove auth header for future requests
     setAuthToken(false);
 
-    this.props.history.push('/login')
+    // this.props.history.push('/login')
+
   }
   
 
   render() {
     
     return (
-      isLoggedIn(localStorage.jwtToken) ?
+      isLoggedIn(this.props.token) ?
       (<div>
         <nav className="Nav">
             <div className="Nav-menus">
@@ -33,7 +36,7 @@ class Navbar extends Component {
               </div>
             </div>
           </nav>
-      </div>) : null
+      </div>) : <Redirect to="/login" />
     )
   }
 }
