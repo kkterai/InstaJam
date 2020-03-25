@@ -6,7 +6,12 @@ class Home extends Component {
     return (
       <div className="home">
         <div className="container">
-          Feed of other users' Posts
+          <div className="stories">
+            Followed profile icons - clickthrough to stories
+          </div>
+          <div className="friend-posts">
+            Feed of friends' Posts
+          </div>
         </div>
       </div>
     );
