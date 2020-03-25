@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Navbar from './components/layout/Navbar';
@@ -9,17 +9,28 @@ import Login from './components/auth/Login';
 
 import './index.css';
 
+// - If not logged in, /home should redirect to /login
+// - If logged in, /login should redirect to /home
+// - When a user signs up, they should be logged in AND redirect to /home instead of having to sign up and then login
+
 function App() {
+  const existingToken = localStorage.getItem('jwtToken');
+  const [token, setToken] = useState(existingToken)
+
     return (
-      <Router>
-        <div className="App">
-          <Navbar />
+      <div className="App">
+        <Router>
+          <Navbar token={token} setToken={setToken} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/home" component={Home} />
-          <Footer />
-        </div>
-      </Router>
+          <Route exact path="/login">
+            <Login setToken={setToken} />
+          </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+        </Router>
+        <Footer token={token}/>
+      </div>
     );
   
 }
