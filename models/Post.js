@@ -7,14 +7,13 @@ const PostSchema = new Schema({
     ref: 'user'
   },
   caption: {
-    type: String,
-    required: true
+    type: String
   },
   content: {
     type: Schema.Types.Mixed,
     required: true
   },
-  name: {
+  username: {
     type: String
   },
   avatar: {
@@ -38,7 +37,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
       },
-      name: {
+      username: {
         type: String
       },
       avatar: {
