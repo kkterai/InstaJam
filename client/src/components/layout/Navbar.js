@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 import '../../index.css';
-import isLoggedIn from '../../validation/is-logged-in'
+import isEmpty from '../../validation/is-empty';
 import setAuthToken from '../../utils/setAuthToken';
 
 
@@ -13,16 +13,14 @@ class Navbar extends Component {
     localStorage.removeItem('jwtToken');
     // Remove auth header for future requests
     setAuthToken(false);
-
-    // this.props.history.push('/login')
-
+    
+    this.props.history.push('/login')
   }
   
-
   render() {
-    
+
     return (
-      isLoggedIn(this.props.token) ?
+      !isEmpty(localStorage.jwtToken) ?
       (<div>
         <nav className="Nav">
             <div className="Nav-menus">
@@ -36,9 +34,9 @@ class Navbar extends Component {
               </div>
             </div>
           </nav>
-      </div>) : <Redirect to="/login" />
+      </div>) : null
     )
   }
 }
 
-export default Navbar;
+export default (withRouter(Navbar));
