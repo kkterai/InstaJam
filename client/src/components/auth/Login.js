@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import {withRouter} from 'react-router-dom';
-
-import axios from 'axios';
+import { connect } from "react-redux";
 import classnames from "classnames";
-import logo from '../../img/Instagram-text.png'
-import setAuthToken from '../../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
+import PropTypes from "prop-types";
 
+import { loginUser } from "../../actions/authActions";
+import logo from '../../img/Instagram-text.png'
 
 class Login extends Component {
   constructor() {
@@ -32,30 +31,17 @@ class Login extends Component {
       password: this.state.password,
       errors: {}
     };
+    console.log(this.props)
+    this.props.loginUser(user);
+  }
 
-    axios
-      .post("/api/users/login", user)
-      .then(
-        res => {
-        
-        //Save to localstorage
-        const { token } = res.data;
-        //set token to ls and local app state
-        localStorage.setItem("jwtToken", token);
-        this.props.setToken(token);
-
-        //Set token to authheader
-        setAuthToken(token);
-        
-        //Decode token to get the user data
-        var decoded = jwt_decode(token);
-        
-        //TODO: implement Redux to manage global app state
-        console.log(decoded);
-
-        this.props.history.push('/home')
-      })
-      .catch(err => this.setState({errors: err.response.data}));
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/home");
+    }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   render() {
@@ -109,4 +95,15 @@ class Login extends Component {
   }
 }
 
-export default (withRouter(Login));
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, {loginUser})(withRouter(Login));
