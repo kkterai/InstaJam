@@ -9,13 +9,10 @@ const ProfileSchema = new Schema({
   avatar: {
     type: String
   },
-  handle: {
+  username: {
     type: String,
     required: true,
     max: 40
-  },
-  postnumber: {
-    type: String
   },
   followernumber: {
     type: String
@@ -24,6 +21,18 @@ const ProfileSchema = new Schema({
     type: String
   },
   name: {
+    type: String
+  },
+  website: {
+    type: String
+  },
+  bio: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  phone: {
     type: String
   },
   posts: [
