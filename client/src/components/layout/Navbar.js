@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import '../../index.css';
 import isEmpty from '../../validation/is-empty';
-import setAuthToken from '../../utils/setAuthToken';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
+import { clearCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
   
-  logout = click => {
-    // Remove token from localStorage
-    this.props.setToken(null);
-    localStorage.removeItem('jwtToken');
-    // Remove auth header for future requests
-    setAuthToken(false);
-    
-    this.props.history.push('/login')
+  onLogoutClick(e) {
+    e.preventDefault();
+    this.props.clearCurrentProfile();
+    this.props.logoutUser();
   }
   
   render() {
@@ -30,7 +28,7 @@ class Navbar extends Component {
                 </a>
               </div>
               <div className="logout">
-                <button className="btn" onClick={this.logout}>Log Out</button>
+                <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>
               </div>
             </div>
           </nav>
@@ -39,4 +37,13 @@ class Navbar extends Component {
   }
 }
 
-export default (withRouter(Navbar));
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(withRouter(Navbar));
