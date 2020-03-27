@@ -31,7 +31,7 @@ class Login extends Component {
       password: this.state.password,
       errors: {}
     };
-    console.log(this.props)
+
     this.props.loginUser(user);
   }
 

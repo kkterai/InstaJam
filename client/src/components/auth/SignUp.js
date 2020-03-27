@@ -12,6 +12,7 @@ class SignUp extends Component {
     this.state = {
         name: '',
         email: '',
+        username: '',
         password: '',
         password2: '',
         errors: {}
@@ -31,10 +32,11 @@ onSubmit(e) {
     const newUser = {
         name: this.state.name,
         email: this.state.email,
+        username: this.state.username,
         password: this.state.password,
         password2: this.state.password2
     };
-  
+    debugger;
     this.props.registerUser(newUser, this.props.history);
 }
 
@@ -81,6 +83,20 @@ render() {
                     />
                     {errors.email && (
                         <div className="invalid-feedback">{errors.email}</div>
+                    )}
+                    </div>
+                    <div className="form-group">
+                    <input type="username" 
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.username
+                        })}  
+                    placeholder="Username" 
+                    name="username" 
+                    value={this.state.username}
+                    onChange={this.onChange}
+                    />
+                    {errors.username && (
+                        <div className="invalid-feedback">{errors.username}</div>
                     )}
                     <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
                     </div>
