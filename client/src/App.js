@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Provider} from 'react-redux';
 
 import store from './store';
@@ -10,6 +10,7 @@ import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 
 import './index.css';
+import PrivateRoute from './components/common/PrivateRoute';
 
 // // - If not logged in, /home should redirect to /login
 // // - If logged in, /login should redirect to /home
@@ -25,12 +26,10 @@ function App() {
           <div className="App">
             <Navbar token={token} setToken={setToken} />
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/login">
-                <Login setToken={setToken} />               
-              </Route>
-              <Route exact path="/home">
-                <Home />
-              </Route>
+              <Route exact path="/login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/home" component={Home}/>
+              </Switch>
             <Footer token={token}/>
           </div>
         </Router>
