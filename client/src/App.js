@@ -11,13 +11,13 @@ import Login from './components/auth/Login';
 
 import './index.css';
 
-// - If not logged in, /home should redirect to /login
-// - If logged in, /login should redirect to /home
-// - When a user signs up, they should be logged in AND redirect to /home instead of having to sign up and then login
+// // - If not logged in, /home should redirect to /login
+// // - If logged in, /login should redirect to /home
+// // - When a user signs up, they should be logged in AND redirect to /home instead of having to sign up and then login
 
 function App() {
   const existingToken = localStorage.getItem('jwtToken');
-  const [token, setToken] = useState(existingToken)
+  const [token, setToken] = useState(existingToken);
 
     return (
       <Provider store={store}>
@@ -26,7 +26,7 @@ function App() {
             <Navbar token={token} setToken={setToken} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login">
-                <Login setToken={setToken} />
+                <Login setToken={setToken} />               
               </Route>
               <Route exact path="/home">
                 <Home />
