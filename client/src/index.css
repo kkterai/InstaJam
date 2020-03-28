@@ -53,6 +53,14 @@ i.Nav {
   margin: 10px 20px;
 }
 
+.Nav a img {
+  position: absolute; 
+  right: 0;
+  margin: 10px 20px;
+  width: 22px;
+  height: 22px;
+}
+
 /* Footer */
 
 .footer {

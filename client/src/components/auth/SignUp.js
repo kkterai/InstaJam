@@ -14,7 +14,6 @@ class SignUp extends Component {
         email: '',
         username: '',
         password: '',
-        password2: '',
         errors: {}
     };
 
@@ -33,10 +32,9 @@ onSubmit(e) {
         name: this.state.name,
         email: this.state.email,
         username: this.state.username,
-        password: this.state.password,
-        password2: this.state.password2
+        password: this.state.password
     };
-    debugger;
+
     this.props.registerUser(newUser, this.props.history);
 }
 

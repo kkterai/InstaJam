@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {withRouter, Link} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import '../../index.css';
 import isEmpty from '../../validation/is-empty';
 import PropTypes from 'prop-types';
@@ -27,9 +27,13 @@ class Navbar extends Component {
                   Instagram
                 </a>
               </div>
-              <div className="logout">
-                <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>
-              </div>
+              <a href="profile.html">
+              <img
+                className="rounded-circle d-none d-md-block"
+                src={this.props.auth.user.avatar}
+                alt=""
+              />
+              </a>
             </div>
           </nav>
       </div>) : null
