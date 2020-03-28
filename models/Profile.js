@@ -14,12 +14,22 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  followernumber: {
-    type: String
-  },
-  followingnumber: {
-    type: String
-  },
+  followers: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+    }
+  ],
+  following: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+    }
+  ],
   name: {
     type: String
   },
@@ -44,7 +54,10 @@ const ProfileSchema = new Schema({
       content: {
         type: Schema.Types.Mixed,
         required: true
-      }
+      },
+      caption: {
+        type: String
+      },
     }
   ],
   date: {
