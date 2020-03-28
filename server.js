@@ -9,7 +9,7 @@ const passport = require('passport');
 const app = express();
 
 //Body parser middleware
-app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
 
 //Db Config

@@ -4,10 +4,10 @@ const isEmpty = require('./is-empty');
 module.exports = function validatePostInput(data) {
   let errors = {};
 
-  data.text = !isEmpty(data.text) ? data.text : '';
+  data.content = !isEmpty(data.content) ? data.content : '';
 
-  if (!Validator.isURL(data.text)) {
-    errors.text = 'Post must contain media';
+  if (!Validator.isURL(data.content)) {
+    errors.content = 'Post must contain media';
   }
 
   return {

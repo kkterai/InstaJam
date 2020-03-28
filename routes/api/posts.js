@@ -8,11 +8,8 @@ const Post = require('../../models/Post');
 // Profile model
 const Profile = require('../../models/Profile');
 
-// WIP - Validation
+// Validation
 const validatePostInput = require('../../validation/post');
-
-// ****** WIP - How to incorporate video and images in addition to text ******
-// Otherwise, these routes work
 
 // @route   GET api/posts
 // @desc    Get posts
@@ -42,6 +39,7 @@ router.get('/', (req, res) => {
     '/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
+      console.log(req.body.caption)
       const { errors, isValid } = validatePostInput(req.body);
   
       // Check Validation
@@ -51,8 +49,9 @@ router.get('/', (req, res) => {
       }
   
       const newPost = new Post({
-        text: req.body.text,
-        name: req.body.name,
+        caption: req.body.caption,
+        content: req.body.content,
+        username: req.body.username,
         avatar: req.body.avatar,
         user: req.user.id
       });
@@ -170,7 +169,7 @@ router.get('/', (req, res) => {
         .then(post => {
           const newComment = {
             text: req.body.text,
-            name: req.body.name,
+            username: req.body.username,
             avatar: req.body.avatar,
             user: req.user.id
           };
