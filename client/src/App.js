@@ -15,6 +15,9 @@ import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
+import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
+import EditProfile from './components/edit-profile/EditProfile';
 
 import './index.css';
 import PrivateRoute from './components/common/PrivateRoute';
@@ -52,6 +55,15 @@ function App() {
             <Navbar token={token} setToken={setToken} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:username" component={Profile} />
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
+              </Switch>
               <Switch>
                 <PrivateRoute exact path="/home" component={Home}/>
               </Switch>

@@ -14,7 +14,7 @@ class CreateProfile extends Component {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      handle: '',
+      username: '',
       company: '',
       website: '',
       location: '',
@@ -76,8 +76,7 @@ class CreateProfile extends Component {
 
       // Set component fields state
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
+        username: profile.username,
         website: profile.website,
         location: profile.location,
         status: profile.status,
@@ -97,7 +96,7 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
-      handle: this.state.handle,
+      username: this.state.username,
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
@@ -200,12 +199,12 @@ class CreateProfile extends Component {
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
+                  placeholder="* Profile username"
+                  name="username"
+                  value={this.state.username}
                   onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  error={errors.username}
+                  info="A unique username for your profile URL. Your full name, company name, nickname"
                 />
                 <SelectListGroup
                   placeholder="Status"
