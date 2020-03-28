@@ -25,11 +25,11 @@ class ProfileAbout extends Component {
             <h3 className="text-center text-info">Skill Set</h3>
             <div className="row">
               <div className="d-flex flex-wrap justify-content-center align-items-center">
-                {skills}
+                Something here?
               </div>
             </div>
             <div className="logout">
-                {isEmpty(localStorage.jwtToken) ? (<button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>) : ()}
+                {isEmpty(localStorage.jwtToken) ? (<button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>) : null}
             </div>
           </div>
         </div>

@@ -9,11 +9,6 @@ const ProfileSchema = new Schema({
   avatar: {
     type: String
   },
-  username: {
-    type: String,
-    required: true,
-    max: 40
-  },
   followers: [
     {
       user: {
@@ -32,6 +27,11 @@ const ProfileSchema = new Schema({
   ],
   name: {
     type: String
+  },
+  username: {
+    type: String,
+    required: true,
+    max: 40
   },
   website: {
     type: String

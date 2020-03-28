@@ -26,7 +26,7 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
+    if (req.body.username) profileFields.username = req.body.username;
     if (req.body.postnumber) profileFields.postnumber = req.body.postnumber;
     if (req.body.followernumber) profileFields.followernumber = req.body.followernumber;
     if (req.body.followingnumber) profileFields.followingnumber = req.body.followingnumber;
@@ -49,11 +49,11 @@ router.post(
       } else {
         // Create
 
-        // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle })
+        // Check if username exists
+        Profile.findOne({ username: profileFields.username })
         .then(profile => {
           if (profile) {
-            errors.handle = 'That handle already exists';
+            errors.username = 'That username already exists';
             res.status(400).json(errors);
           }
          // Save Profile

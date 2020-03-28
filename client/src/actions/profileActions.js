@@ -51,7 +51,20 @@ export const getProfileByusername = username => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push('/profile'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Edit Profile
+export const editProfile = (profileData, history) => dispatch => {
+  axios
+    .post('/api/profile', profileData)
+    .then(res => history.push('/home'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
