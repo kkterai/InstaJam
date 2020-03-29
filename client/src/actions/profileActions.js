@@ -60,19 +60,6 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
-// Edit Profile
-export const editProfile = (profileData, history) => dispatch => {
-  axios
-    .post('/api/profile', profileData)
-    .then(res => history.push('/home'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
 // Get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());

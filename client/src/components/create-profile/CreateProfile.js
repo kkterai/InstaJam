@@ -6,13 +6,13 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
 
-class EditProfile extends Component {
+class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       username: '',
-      email: '',
+      email: '', // TODO: Find out what happened to email property
       website: '',
       bio: '',
       phone: '',
@@ -25,6 +25,7 @@ class EditProfile extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +35,6 @@ class EditProfile extends Component {
 
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-      // Users automatically get a profile
 
       // Set component fields state
       this.setState({
@@ -78,9 +78,41 @@ class EditProfile extends Component {
               <Link to="/home" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Edit Profile</h1>
+              <h1 className="display-4 text-center">Create Profile</h1>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
+              <TextFieldGroup
+                  placeholder="Name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                  error={errors.name}
+                  info="Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder="* Username"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.onChange}
+                  error={errors.username}
+                  info="* A unique username for your profile URL"
+                />
+                <TextFieldGroup
+                  placeholder="* Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  error={errors.email}
+                  info="Your preferred email"
+                />
+                <TextFieldGroup
+                  placeholder="Phone number"
+                  name="phone"
+                  value={this.state.phone}
+                  onChange={this.onChange}
+                  error={errors.phone}
+                  info="Your preferred phone number"
+                />
                 <TextFieldGroup
                   placeholder="Website"
                   name="website"
@@ -111,7 +143,7 @@ class EditProfile extends Component {
   }
 }
 
-EditProfile.propTypes = {
+CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
@@ -119,10 +151,11 @@ EditProfile.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   profile: state.profile,
   errors: state.errors
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(EditProfile)
+  withRouter(CreateProfile)
 );

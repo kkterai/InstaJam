@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Spinner from '../common/Spinner';
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
-import Spinner from '../common/Spinner';
+
+
 import { getProfileByusername } from '../../actions/profileActions';
 
 class Profile extends Component {
@@ -34,19 +36,21 @@ class Profile extends Component {
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
               </Link>
+              <ProfileHeader profile={profile} />
+              <ProfileAbout profile={profile} />
             </div>
             <div className="col-md-6" />
           </div>
-          <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
         </div>
       );
     }
 
     return (
+      
       <div className="profile">
         <div className="container">
           <div className="row">
+          This is my profile
             <div className="col-md-12">{profileContent}</div>
           </div>
         </div>

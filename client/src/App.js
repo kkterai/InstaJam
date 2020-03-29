@@ -17,6 +17,7 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 
 import './index.css';
@@ -56,7 +57,14 @@ function App() {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:username" component={Profile} />
+              <Route exact path="/profiles/:username" component={Profile} />
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
+              </Switch>
               <Switch>
                 <PrivateRoute
                   exact
