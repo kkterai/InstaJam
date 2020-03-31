@@ -57,7 +57,7 @@ class PostItem extends Component {
               alt=""
             />
           </Link>
-          <span>{post.name}</span>
+          <span>{post.username}</span>
         </header>
         <div className="post-item-content" >
           <div class="box"> 
