@@ -57,11 +57,12 @@ class PostItem extends Component {
               alt=""
             />
           </Link>
-          <br />
-          <p className="text-center">{post.name}</p>
+          <span>{post.name}</span>
         </header>
         <div className="post-item-content" >
-          {renderContent()}
+          <div class="box"> 
+            {renderContent()}
+          </div>
         </div>
         <div className="post-social" >
         <p className="lead">{post.caption}</p>
