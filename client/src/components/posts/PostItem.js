@@ -48,22 +48,23 @@ class PostItem extends Component {
       }
     
     return (
-      <div className="card card-body mb-3">
-        <div className="row">
-          <div className="col-md-2">
-            <Link to="/profile">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={post.avatar}
-                alt=""
-              />
-            </Link>
-            <br />
-            <p className="text-center">{post.name}</p>
-          </div>
-          <div className="col-md-10">
-            {renderContent()}
-            <p className="lead">{post.caption}</p>
+      <article classname="post-item">
+        <header className="post-item-hdr">
+          <Link to="/profile">
+            <img
+              className="rounded-circle d-none d-md-block"
+              src={post.avatar}
+              alt=""
+            />
+          </Link>
+          <br />
+          <p className="text-center">{post.name}</p>
+        </header>
+        <div className="post-item-content" >
+          {renderContent()}
+        </div>
+        <div className="post-social" >
+        <p className="lead">{post.caption}</p>
             {showActions ? (
               <span>
                 <button
@@ -99,9 +100,8 @@ class PostItem extends Component {
                 ) : null}
               </span>
             ) : null}
-          </div>
         </div>
-      </div>
+      </article>
     );
   }
 }
