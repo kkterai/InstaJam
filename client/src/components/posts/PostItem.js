@@ -65,7 +65,16 @@ class PostItem extends Component {
           </div>
         </div>
         <div className="post-social" >
-        <p className="lead">{post.caption}</p>
+          <section className="interaction-btns">
+
+          </section>
+          <section className="like-number">
+
+          </section>
+          <div className="post-comments">
+
+          </div>
+          <p className="lead">{post.caption}</p>
             {showActions ? (
               <span>
                 <button
