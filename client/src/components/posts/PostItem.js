@@ -30,7 +30,7 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-    console.log(post._id)
+
     const renderContent = () => {
         const opts = {
           height: '390',
@@ -46,6 +46,12 @@ class PostItem extends Component {
         }
           return <img src={post.content} alt={post.content} />
       }
+    
+    let datePub = new Date(post.date);
+    let now = new Date();
+    let dateDiff = now.getTime() - datePub.getTime();
+    let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24))
+    
     
     return (
       <article classname="post-item">
@@ -66,15 +72,6 @@ class PostItem extends Component {
         </div>
         <div className="post-social" >
           <section className="interaction-btns">
-
-          </section>
-          <section className="like-number">
-
-          </section>
-          <div className="post-comments">
-
-          </div>
-          <p className="lead">{post.caption}</p>
             {showActions ? (
               <span>
                 <button
@@ -110,6 +107,19 @@ class PostItem extends Component {
                 ) : null}
               </span>
             ) : null}
+          </section>
+          <section className="like-number">
+                {(post.likes.length === 1) ? `${post.likes.length} like` : `${post.likes.length} likes` } 
+          </section>
+          <div className="post-comments">
+              Comment list
+          </div>
+          <div className="time-ago-posted" >
+            {diffInDays} days ago {/* update to accomodate hours and sing vs. plural*/}
+          </div>
+          <section className="post-comment-form" >
+            Create new comment here
+          </section>
         </div>
       </article>
     );
