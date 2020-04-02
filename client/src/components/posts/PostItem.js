@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+
+import CommentForm from '../post/CommentForm';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import ReactPlayer from 'react-youtube';
 
@@ -118,7 +120,7 @@ class PostItem extends Component {
             {diffInDays} days ago {/* update to accomodate hours and sing vs. plural*/}
           </div>
           <section className="post-comment-form" >
-            Create new comment here
+            < CommentForm postId={post._id} />
           </section>
         </div>
       </article>
