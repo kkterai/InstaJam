@@ -36,15 +36,15 @@ class Navbar extends Component {
               <div className="logout">
                 <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>
               </div>
-              <Link to={conditional}>
-                <div className="nav-profile">
+              <div className="nav-profile">
+                <Link to={conditional}>
                   <img
                     className="rounded-circle d-none d-md-block"
                     src={this.props.auth.user.avatar}
                     alt=""
                   />
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
           </nav>
       </div>) : null
