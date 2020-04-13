@@ -17,21 +17,22 @@ class CommentItem extends Component {
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
-              <p className="text-left">{comment.username}</p>
-            </a>            
+            <p>
+              <a href="profile.html">{comment.username}</a> 
+            </p>           
           </div>
           <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
-            {comment.user === auth.user.id ? (
-              <button
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}
-                type="button"
-                className="btn btn-danger mr-1"
-              >
+            <div className="lead">{comment.text}</div>
+            <div className="comment-delete">
+              {comment.user === auth.user.id ? (
+                <button
+                  onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+                  type="button"
+                >
                 <i className="fas fa-times" />
-              </button>
-            ) : null}
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
