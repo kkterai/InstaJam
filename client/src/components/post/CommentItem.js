@@ -14,7 +14,7 @@ class CommentItem extends Component {
     const comment = this.props.comment;
 
     return (
-      <div className="card card-body mb-3">
+     
         <div className="row">
           <div className="col-md-2">
             <p>
@@ -35,7 +35,6 @@ class CommentItem extends Component {
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }
