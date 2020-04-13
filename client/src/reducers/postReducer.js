@@ -25,11 +25,12 @@ export default function(state = initialState, action) {
         posts: action.payload,
         loading: false
       };
-    case GET_POST:
-      console.log(action.payload)
+    case GET_POST: // Rename to account for updating A post on the INDEX view
+      const index = state.posts.findIndex(post => post._id === action.payload._id);
+      let updatedPosts = [...state.posts.slice(0,index), action.payload, ...state.posts.slice(index+1)];
       return {
         ...state,
-        post: action.payload,
+        posts: updatedPosts,
         loading: false
       };
     case ADD_POST:

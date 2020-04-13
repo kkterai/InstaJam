@@ -6,6 +6,7 @@ import { deleteComment } from '../../actions/postActions';
 class CommentItem extends Component {
 
   onDeleteClick(postId, commentId) {
+    console.log(postId, commentId)
     this.props.deleteComment(postId, commentId);
   }
 

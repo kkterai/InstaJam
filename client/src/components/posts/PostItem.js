@@ -11,10 +11,6 @@ import ReactPlayer from 'react-youtube';
 
 class PostItem extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    debugger;
-  }
-
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
