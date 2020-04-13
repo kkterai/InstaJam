@@ -5,10 +5,16 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import CommentForm from '../post/CommentForm';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import CommentFeed from '../post/CommentFeed';
+import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
 import ReactPlayer from 'react-youtube';
 
 class PostItem extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    debugger;
+  }
+
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -56,7 +62,7 @@ class PostItem extends Component {
     
     
     return (
-      <article classname="post-item">
+      <article className="post-item">
         <header className="post-item-hdr">
           <Link to="/profile">
             <img
@@ -68,7 +74,7 @@ class PostItem extends Component {
           <span>{post.username}</span>
         </header>
         <div className="post-item-content" >
-          <div class="box"> 
+          <div className="box"> 
             {renderContent()}
           </div>
         </div>
@@ -95,9 +101,6 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Comments
-                </Link>
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
@@ -114,7 +117,7 @@ class PostItem extends Component {
                 {(post.likes.length === 1) ? `${post.likes.length} like` : `${post.likes.length} likes` } 
           </section>
           <div className="post-comments">
-              Comment list
+            <CommentFeed postId={post._id} comments={post.comments} />
           </div>
           <div className="time-ago-posted" >
             {diffInDays} days ago {/* update to accomodate hours and sing vs. plural*/}
@@ -144,6 +147,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
+export default connect(mapStateToProps, { getPost, deletePost, addLike, removeLike })(
   PostItem
 );

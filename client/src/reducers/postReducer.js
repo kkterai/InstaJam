@@ -26,6 +26,7 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_POST:
+      console.log(action.payload)
       return {
         ...state,
         post: action.payload,

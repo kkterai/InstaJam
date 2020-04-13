@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import CommentItem from './CommentItem';
 
 class CommentFeed extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    debugger;
+  }
+
   render() {
     const { comments, postId } = this.props;
 

@@ -16,12 +16,6 @@ class CommentForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
-    }
-  }
-
   onKeyPress = (e) => {
     if(e.which === 13) {
       this.onSubmit();
