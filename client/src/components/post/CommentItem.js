@@ -18,14 +18,8 @@ class CommentItem extends Component {
         <div className="row">
           <div className="col-md-2">
             <a href="profile.html">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={comment.avatar}
-                alt=""
-              />
-            </a>
-            <br />
-            <p className="text-center">{comment.username}</p>
+              <p className="text-left">{comment.username}</p>
+            </a>            
           </div>
           <div className="col-md-10">
             <p className="lead">{comment.text}</p>
