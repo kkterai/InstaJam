@@ -13,7 +13,6 @@ export default (state = initialState, action) => {
       return {
         modalProps: action.modalProps,
         modalType: action.modalType,
-        type: action.type
       }
     case HIDE_MODAL:
       return initialState

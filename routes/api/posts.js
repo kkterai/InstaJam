@@ -39,7 +39,6 @@ router.get('/', (req, res) => {
     '/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      console.log(req.body.caption)
       const { errors, isValid } = validatePostInput(req.body);
   
       // Check Validation
