@@ -3,6 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import '../../index.css';
 import isEmpty from '../../validation/is-empty';
 import PropTypes from 'prop-types';
+import PostForm from '../posts/PostForm';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/authActions';
@@ -32,6 +33,11 @@ class Navbar extends Component {
                 <a className="Nav-brand-logo" href="/">
                   Instagram
                 </a>
+              </div>
+              <div className="new-post-modal">
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  <PostForm/>
+                </button>
               </div>
               <div className="logout">
                 <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>

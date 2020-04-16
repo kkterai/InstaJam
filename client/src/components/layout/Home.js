@@ -29,7 +29,6 @@ class Home extends Component {
             Followed profile icons - clickthrough to stories
           </div>
           <div className="friend-posts">
-            <PostForm />
             {postContent}
           </div>
         </div>
