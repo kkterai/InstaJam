@@ -74,7 +74,7 @@ function App() {
                 />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/home" >
+                <PrivateRoute exact path="/home" > {/*TODO: Re-implement a way to redirect users to login when not logged in */}
                   <Home toggleModal={setModal} modalState={modalState}/>
                 </PrivateRoute> 
               </Switch>
