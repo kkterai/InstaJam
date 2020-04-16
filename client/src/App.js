@@ -45,15 +45,16 @@ if (localStorage.jwtToken) {
   }
 }
 
+// TODO: pass showModal state here, update home component to use props, implement button in NavBar
 function App() {
-  const existingToken = localStorage.getItem('jwtToken');
-  const [token, setToken] = useState(existingToken);
+
+  const [modalState, setModal] = useState(false);
 
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar token={token} setToken={setToken} />
+            <Navbar toggleModal={setModal} modalState={modalState}/>
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
@@ -73,13 +74,15 @@ function App() {
                 />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/home" component={Home}/>
+                <PrivateRoute exact path="/home" >
+                  <Home toggleModal={setModal} modalState={modalState}/>
+                </PrivateRoute> 
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
-            <Footer token={token}/>
+            <Footer />
           </div>
         </Router>
       </Provider>
