@@ -3,7 +3,6 @@ import { withRouter, Link } from 'react-router-dom';
 import '../../index.css';
 import isEmpty from '../../validation/is-empty';
 import PropTypes from 'prop-types';
-import PostForm from '../posts/PostForm';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/authActions';
@@ -17,10 +16,13 @@ class Navbar extends Component {
     this.props.logoutUser();
   }
 
-  // 
-  
-  render() {
+  onNewPostClick(e) {
+    this.props.toggleModal(
+      (this.props.modalState === false) ? true : false
+    )
+  }
 
+  render() {
     let userProfile = this.props.profile.profile;
     let conditional = (isEmpty(userProfile)) ? '/create-profile' : '/profiles/:username';
 
@@ -35,9 +37,7 @@ class Navbar extends Component {
                 </a>
               </div>
               <div className="new-post-modal">
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                  <PostForm/>
-                </button>
+                <button className="btn btn-secondary" onClick={this.onNewPostClick.bind(this)}>New Post</button>
               </div>
               <div className="logout">
                 <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>
