@@ -37,7 +37,7 @@ class Navbar extends Component {
                 </a>
               </div>
               <div className="new-post-modal">
-                <button className="btn btn-secondary" onClick={this.onNewPostClick.bind(this)}>New Post</button>
+                <button className="btn btn-outline-secondary" onClick={this.onNewPostClick.bind(this)}>New Post</button>
               </div>
               <div className="logout">
                 <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>

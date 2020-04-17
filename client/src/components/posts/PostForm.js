@@ -10,6 +10,7 @@ class PostForm extends Component {
     this.state = {
       caption: '',
       content: '',
+      toggleModal: this.props.toggleModal,
       errors: {}
     };
 
@@ -49,7 +50,6 @@ class PostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Share something...</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
             <div className="form-group">

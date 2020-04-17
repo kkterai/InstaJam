@@ -45,7 +45,6 @@ if (localStorage.jwtToken) {
   }
 }
 
-// TODO: pass showModal state here, update home component to use props, implement button in NavBar
 function App() {
 
   const [modalState, setModal] = useState(false);
@@ -87,7 +86,6 @@ function App() {
         </Router>
       </Provider>
     );
-  
 }
 
 export default App;
