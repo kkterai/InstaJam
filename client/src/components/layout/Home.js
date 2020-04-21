@@ -30,7 +30,7 @@ class Home extends Component {
       </div>
         <div className="container">
           <div className="stories">
-            Followed profile icons - clickthrough to stories
+            {/*Followed profile icons - clickthrough to stories*/}
           </div>
           <div className="friend-posts">
             {postContent}
