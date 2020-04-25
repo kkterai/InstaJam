@@ -7,6 +7,8 @@ import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 import PostModal from '../posts/PostModal';
 
+import configStyles from './config-styles.js'
+
 class Home extends Component {
 
   componentDidMount() {
@@ -20,7 +22,7 @@ class Home extends Component {
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />;
+      postContent = <PostFeed width={configStyles.imageWidth} posts={posts} />;
     }
     
     return (

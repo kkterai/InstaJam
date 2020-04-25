@@ -8,6 +8,7 @@ import CommentForm from '../post/CommentForm';
 import CommentFeed from '../post/CommentFeed';
 import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
 import ReactPlayer from 'react-youtube';
+import styles from './post-item-styles.js'
 
 class PostItem extends Component {
 
@@ -58,7 +59,7 @@ class PostItem extends Component {
     
     
     return (
-      <article className="post-item">
+      <article style={styles.root} className="post-item">
         <header className="post-item-hdr">
           <Link to="/profile">
             <img
