@@ -4,6 +4,7 @@ import '../../index.css';
 import isEmpty from '../../validation/is-empty';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PostModal from '../posts/PostModal';
 
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
@@ -38,6 +39,9 @@ class Navbar extends Component {
               </div>
               <div className="new-post-modal">
                 <button className="btn btn-outline-secondary" onClick={this.onNewPostClick.bind(this)}>New Post</button>
+              </div>
+              <div className="new-modal" >
+                <PostModal toggleModal={this.props.toggleModal} modalState={this.props.modalState} />
               </div>
               <div className="logout">
                 <button className="btn" onClick={this.onLogoutClick.bind(this)}>Log Out</button>

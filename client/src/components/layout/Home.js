@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PostFeed from '../posts/PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
-import PostModal from '../posts/PostModal';
 
 import configStyles from './config-styles.js'
 
@@ -27,9 +26,6 @@ class Home extends Component {
     
     return (
       <div className="home">
-      <div className="new-modal" >
-        <PostModal toggleModal={this.props.toggleModal} modalState={this.props.modalState} />
-      </div>
         <div className="container">
           <div className="stories">
             {/*Followed profile icons - clickthrough to stories*/}
