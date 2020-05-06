@@ -51,7 +51,7 @@ export const getProfileByusername = username => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/profile'))
+    .then(res => history.push(`/profiles/${profileData.username}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
