@@ -8,6 +8,7 @@ class PostFeed extends Component {
 
     return posts.map(post => (
       <div className="post-item-wrapper">
+        {/* Add conditional to incorporate a component w/ multiple content */}
         <PostItem key={post._id} post={post} />
       </div>
     ));

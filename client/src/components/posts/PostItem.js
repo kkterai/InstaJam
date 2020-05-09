@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 import CommentForm from '../post/CommentForm';
 import CommentFeed from '../post/CommentFeed';
 import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
-import ReactPlayer from 'react-youtube';
+
 import styles from './post-item-styles.js'
+import Content from './Content';
 
 class PostItem extends Component {
 
@@ -34,30 +35,15 @@ class PostItem extends Component {
   }
 
   render() {
+
     const { post, auth, showActions } = this.props;
-
-    const renderContent = () => {
-        const opts = {
-          height: '390',
-          width: '640',
-          playerVars: {
-            // autoplay: 1
-          }
-        };
-
-        if (post.content && post.content.match(/youtube/)) {
-          let youTubeId = post.content.replace(/^[^_]*=/,'');
-          return <ReactPlayer videoId={youTubeId} opts={opts} />
-        }
-          return <img src={post.content} alt={post.content} />
-      }
-    
+    const contentCollection = post.contents.map( content => <Content content={content} />)
+   
     let datePub = new Date(post.date);
     let now = new Date();
     let dateDiff = now.getTime() - datePub.getTime();
     let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24))
-    
-    
+  
     return (
       <article style={styles.root} className="post-item">
         <header className="post-item-hdr">
@@ -72,7 +58,7 @@ class PostItem extends Component {
         </header>
         <div className="post-item-content" >
           <div className="box"> 
-            {renderContent()}
+            {contentCollection}
           </div>
         </div>
         <div className="post-social" >
