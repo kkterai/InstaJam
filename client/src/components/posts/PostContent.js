@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPlayer from 'react-youtube';
 
-export default function Content(props) {
+export default function PostContent(props) {
   const opts = {
     height: '390',
     width: '640',

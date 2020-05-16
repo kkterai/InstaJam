@@ -9,7 +9,7 @@ import CommentFeed from '../post/CommentFeed';
 import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
 
 import styles from './post-item-styles.js'
-import Content from './Content';
+import PostContent from './PostContent';
 
 class PostItem extends Component {
 
@@ -37,7 +37,7 @@ class PostItem extends Component {
   render() {
 
     const { post, auth, showActions } = this.props;
-    const contentCollection = post.contents.map( content => <div key={content._id}><Content content={content} /></div>)
+    const contentCollection = post.contents.map( content => <div key={content._id}><PostContent content={content} /></div>)
    
     let datePub = new Date(post.date);
     let now = new Date();
