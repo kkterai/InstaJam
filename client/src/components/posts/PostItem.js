@@ -37,7 +37,7 @@ class PostItem extends Component {
   render() {
 
     const { post, auth, showActions } = this.props;
-    const contentCollection = post.contents.map( content => <Content content={content} />)
+    const contentCollection = post.contents.map( content => <div key={content._id}><Content content={content} /></div>)
    
     let datePub = new Date(post.date);
     let now = new Date();

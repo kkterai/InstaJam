@@ -9,18 +9,20 @@ export default function Content(props) {
       // autoplay: 1
     }
   };
-  console.log(props)
-  let something;
-  if (props.content && props.content.match(/youtube/)) {
-    let youTubeId = props.content.replace(/^[^_]*=/,'');
-    something = <ReactPlayer videoId={youTubeId} opts={opts} />
+
+  let contentStr = props.content.content
+  let contentJsx;
+  
+  if (contentStr && contentStr.match(/youtube/)) {
+    let youTubeId = contentStr.replace(/^[^_]*=/,'');
+    contentJsx = <ReactPlayer videoId={youTubeId} opts={opts} />
   } else {
-    something = <img src={props.content} alt={props.content} /> 
+    contentJsx = <img src={contentStr} alt={contentStr} /> 
   }
 
   return (
     <div>
-      {something}
+      {contentJsx}
     </div>
   )
 }
