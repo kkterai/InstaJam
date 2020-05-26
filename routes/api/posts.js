@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
     
       const newPost = new Post({
         caption: req.body.caption,
-        contents: {content: req.body.content},
+        contents: req.body.contents,
         username: req.body.username,
         avatar: req.body.avatar,
         user: req.user.id
