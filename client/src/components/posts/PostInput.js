@@ -5,12 +5,9 @@ export default class PostInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // content: this.props.content,
       errors: {}
     }
-
   }
-
 
   render() {
     const { errors } = this.state;

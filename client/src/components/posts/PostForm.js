@@ -45,7 +45,6 @@ class PostForm extends Component {
 
   updateContent(index) {
     return (e) => {
-      console.log(e.target.value)
       const newField = {content: e.target.value}
       this.setState({fields: [...this.state.fields.slice(0,index), newField, ...this.state.fields.slice(index+1)]})
     }
