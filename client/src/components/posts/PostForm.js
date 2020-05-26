@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostInput from './PostInput';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
 
 class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contents: [],
       fields: [],
       toggleModal: this.props.toggleModal,
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.updateContent = this.updateContent.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.addField = this.addField.bind(this);
   }
@@ -27,9 +25,7 @@ class PostForm extends Component {
   }
 
   addField() {
-    const fields = this.state.fields.concat(PostInput);
-    debugger;
-    this.setState({ fields, contents: [...this.state.contents, { content: ''}] });
+    this.setState({ fields: [...this.state.fields, { content: ''}] });
   }
 
   onSubmit(e) {
@@ -38,23 +34,27 @@ class PostForm extends Component {
     const { user } = this.props.auth;
 
     const newPost = {
-      contents: this.state.contents,
+      contents: this.state.fields,
       username: user.username,
       avatar: user.avatar
     };
 
     this.props.addPost(newPost);
-    this.setState({ contents: [] });
+    this.setState({ fields: [] });
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  updateContent(index) {
+    return (e) => {
+      console.log(e.target.value)
+      const newField = {content: e.target.value}
+      this.setState({fields: [...this.state.fields.slice(0,index), newField, ...this.state.fields.slice(index+1)]})
+    }
   }
 
   render() {
     const { errors } = this.state;
-    const fields = this.state.fields.map((PostInput, index) => {
-      return <PostInput key={ index } index={ index } content={this.state.contents[index].content} />
+    const fields = this.state.fields.map((field, index) => {
+      return <PostInput key={ index } updateContent={this.updateContent(index)} content={field.content} />
     });
 
     return (
@@ -65,7 +65,7 @@ class PostForm extends Component {
             <div className="form-group">
               {fields}
               </div>
-              <button onClick={ this.addField }> Add Content </button>
+              <button type="button" onClick={ this.addField }> Add Content </button>
               <button type="submit" className="btn btn-dark">
                 Submit
               </button>
