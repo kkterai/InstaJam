@@ -12,6 +12,7 @@ import styles from './post-item-styles.js'
 import PostContent from './PostContent';
 
 class PostItem extends Component {
+  
 
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -35,6 +36,8 @@ class PostItem extends Component {
   }
 
   render() {
+    console.log(`post number ${this.props.post._id}`)
+    console.log(this.props.post.contents)
 
     const { post, auth, showActions } = this.props;
     const contentCollection = post.contents.map( content => <div key={content._id}><PostContent content={content} /></div>)
