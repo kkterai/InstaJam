@@ -6,13 +6,38 @@ import { Link } from 'react-router-dom';
 
 import CommentForm from '../post/CommentForm';
 import CommentFeed from '../post/CommentFeed';
+// Content carousel imports
+import Carousel from '../post/content-carousel/Carousel';
+import Frame from '../post/content-carousel/Frame';
+import PostNav from '../post/content-carousel/PostNav';
+import Slide from '../post/content-carousel/Slide';
+
 import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
 
 import styles from './post-item-styles.js'
-import PostContent from './PostContent';
+
 
 class PostItem extends Component {
-  
+  constructor(props) {
+    super(props)
+    this.handleClickPrevious = this.handleClickPrevious.bind(this)
+    this.handleClickNext = this.handleClickNext.bind(this)
+
+    this.state = {
+      showIndex: 0,
+      numSlides: this.props.post.contents.length
+    }
+  }
+  handleClickPrevious() {
+    this.setState({
+      showIndex: Math.max(this.state.showIndex - 1, 0)
+    })
+  }
+  handleClickNext() {
+    this.setState({
+      showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1)
+    })
+  }
 
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -35,12 +60,24 @@ class PostItem extends Component {
     }
   }
 
+  renderNav() {
+    return (
+      <PostNav
+        onPrevious={this.handleClickPrevious}
+        hasPrevious={this.state.showIndex > 0}
+        onNext={this.handleClickNext}
+        hasNext={this.state.showIndex < this.state.numSlides - 1}
+      />
+    )
+  }
+
   render() {
+
     console.log(`post number ${this.props.post._id}`)
     console.log(this.props.post.contents)
-
+    
     const { post, auth, showActions } = this.props;
-    const contentCollection = post.contents.map( content => <div key={content._id}><PostContent content={content} /></div>)
+    const contentCollection = post.contents.map( content => <div key={content._id}><Slide content={content} /></div>)
    
     let datePub = new Date(post.date);
     let now = new Date();
@@ -59,11 +96,20 @@ class PostItem extends Component {
           </Link>
           <span>{post.username}</span>
         </header>
-        <div className="post-item-content" >
-          <div className="box"> 
-            {contentCollection}
+        <Frame>
+          <Carousel
+            showIndex={this.state.showIndex}
+            nav={this.renderNav()}
+            width={640}
+          >
+          <div className="post-item-content" >
+            <div className="box"> 
+              {contentCollection} {/* Need to refactor here to enable carousel */}
+            </div>
           </div>
-        </div>
+          </Carousel>
+        </Frame>
+        
         <div className="post-social" >
           <section className="interaction-btns">
             {showActions ? (

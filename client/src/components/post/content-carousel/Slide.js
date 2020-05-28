@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactPlayer from 'react-youtube';
 
-export default function PostContent(props) {
+import styles from './slide.module.css';
+
+export default function Slide(props) {
   const opts = {
     height: '390',
     width: '640',
@@ -21,8 +23,8 @@ export default function PostContent(props) {
   }
 
   return (
-    <div>
+    <article className={styles['root']}>
       {contentJsx}
-    </div>
+    </article>
   )
 }

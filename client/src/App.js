@@ -13,7 +13,7 @@ import Footer from './components/layout/Footer';
 import Home from './components/layout/Home';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
-import Post from './components/posts/PostItem';
+import PostItem from './components/posts/PostItem';
 import NotFound from './components/not-found/NotFound';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
@@ -22,7 +22,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 
 import './index.css';
 import PrivateRoute from './components/common/PrivateRoute';
-import PostItem from './components/posts/PostItem';
+
 
 
 // Check for token
