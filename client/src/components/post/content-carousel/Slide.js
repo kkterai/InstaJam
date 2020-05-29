@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactPlayer from 'react-youtube';
+import styleable from 'react-styleable'
 
 import styles from './slide.module.css';
 
-export default function Slide(props) {
+function Slide(props) {
   const opts = {
     height: '390',
     width: '640',
@@ -23,8 +24,10 @@ export default function Slide(props) {
   }
 
   return (
-    <article className={styles['root']}>
+    <article style={props.style} className={props.css.root}>
       {contentJsx}
     </article>
   )
 }
+
+export default styleable(styles)(Slide)

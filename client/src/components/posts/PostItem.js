@@ -77,7 +77,7 @@ class PostItem extends Component {
     console.log(this.props.post.contents)
     
     const { post, auth, showActions } = this.props;
-    const contentCollection = post.contents.map( content => <div key={content._id}><Slide content={content} /></div>)
+    const contentCollection = post.contents.map( content => <div key={content._id}><Slide style={styles} content={content} /></div>)
    
     let datePub = new Date(post.date);
     let now = new Date();
@@ -97,17 +97,17 @@ class PostItem extends Component {
           <span>{post.username}</span>
         </header>
         <Frame>
-          <Carousel
-            showIndex={this.state.showIndex}
-            nav={this.renderNav()}
-            width={640}
-          >
           <div className="post-item-content" >
             <div className="box"> 
-              {contentCollection} {/* Need to refactor here to enable carousel */}
+              <Carousel
+                showIndex={this.state.showIndex}
+                nav={this.renderNav()}
+                width={640}
+                content={contentCollection}
+              >
+              </Carousel>
             </div>
           </div>
-          </Carousel>
         </Frame>
         
         <div className="post-social" >
