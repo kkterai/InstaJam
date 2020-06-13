@@ -13,11 +13,11 @@ function getNextClassName(props) {
 
 function PostNav(props) {
   return (
-    <div className={styles.root}>
-      <button className={getPrevClassName(props)} onClick={props.onPrevious}>
+    <div style={styles.root}>
+      <button style={getPrevClassName(props)} onClick={props.onPrevious}>
         &#10094;
       </button>
-      <button className={getNextClassName(props)} onClick={props.onNext}>
+      <button style={getNextClassName(props)} onClick={props.onNext}>
         &#10095;
       </button>
     </div>
