@@ -1,10 +1,7 @@
-import React from 'react'
-import styleable from 'react-styleable'
+import React from 'react';
 
-import styles from './frame.module.css'
+import styles from './frame-styles.js';
 
-function Frame(props) {
-  return <div className={props.css.root}>{props.children}</div>
+export default function Frame({ children }) {
+  return <div style={styles.root}>{children}</div>
 }
-
-export default styleable(styles)(Frame)

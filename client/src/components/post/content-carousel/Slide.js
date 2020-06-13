@@ -1,8 +1,5 @@
-import React from 'react'
+import React from 'react';
 import ReactPlayer from 'react-youtube';
-import styleable from 'react-styleable'
-
-import styles from './slide.module.css';
 
 function Slide(props) {
   const opts = {
@@ -24,10 +21,10 @@ function Slide(props) {
   }
 
   return (
-    <article style={props.style} className={props.css.root}>
+    <article style={props.style} className={props.root}>
       {contentJsx}
     </article>
   )
 }
 
-export default styleable(styles)(Slide)
+export default Slide;

@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import React from 'react'
-import styleable from 'react-styleable'
 
-import styles from './carousel.module.css'
+import styles from './carousel-styles.js';
 
 function renderSlides(props) {
   return React.Children.map(props.content, (slide, i) => {
-    debugger
     console.log(`style: {${slide.props.children.props.style.root},width: ${props.width},left: ${props.width * (i - props.showIndex)}}`)
-    console.log(slide.props.children)
-    return React.cloneElement(slide, {
+    return React.cloneElement(slide.props.children, {
       style: {
         ...slide.props.children.props.style.root,
         width: props.width,
@@ -21,12 +18,13 @@ function renderSlides(props) {
 
 function Carousel(props) {
   return (
-    <div className={props.css.root}>
+    <div className={styles.root}>
       {renderSlides(props)}
       {props.nav}
     </div>
   )
 }
+
 
 Carousel.propTypes = {
   nav: PropTypes.node.isRequired,
@@ -34,4 +32,4 @@ Carousel.propTypes = {
   width: PropTypes.number
 }
 
-export default styleable(styles)(Carousel)
+export default Carousel;

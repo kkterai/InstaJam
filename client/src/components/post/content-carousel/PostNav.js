@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import styles from './postnav.module.css'
+import styles from './post-nav-styles.js';
 
 function getPrevClassName(props) {
-  return props.hasPrevious ? styles['prev'] : styles['prevHidden']
+  return props.hasPrevious ? styles.prev : styles.prevHidden
 }
 
 function getNextClassName(props) {
-  return props.hasNext ? styles['next'] : styles['nextHidden']
+  return props.hasNext ? styles.next : styles.nextHidden
 }
 
-export default function PostNav(props) {
+function PostNav(props) {
   return (
-    <div className={styles['root']}>
+    <div className={styles.root}>
       <button className={getPrevClassName(props)} onClick={props.onPrevious}>
         &#10094;
       </button>
@@ -30,4 +30,6 @@ PostNav.propTypes = {
   hasPrevious: PropTypes.bool,
   hasNext: PropTypes.bool
 }
+
+export default PostNav;
 

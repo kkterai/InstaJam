@@ -1,4 +1,4 @@
-import config from './config-styles'
+import config from '../../posts/config-styles';
 
 export default {
   root: {

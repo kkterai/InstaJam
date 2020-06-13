@@ -51,7 +51,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+
     const fields = this.state.fields.map((field, index) => {
       return <PostInput key={ index } updateContent={this.updateContent(index)} content={field.content} />
     });

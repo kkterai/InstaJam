@@ -28,11 +28,13 @@ class PostItem extends Component {
       numSlides: this.props.post.contents.length
     }
   }
+
   handleClickPrevious() {
     this.setState({
       showIndex: Math.max(this.state.showIndex - 1, 0)
     })
   }
+
   handleClickNext() {
     this.setState({
       showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1)
@@ -78,7 +80,7 @@ class PostItem extends Component {
     
     const { post, auth, showActions } = this.props;
     const contentCollection = post.contents.map( content => <div key={content._id}><Slide style={styles} content={content} /></div>)
-   
+
     let datePub = new Date(post.date);
     let now = new Date();
     let dateDiff = now.getTime() - datePub.getTime();
