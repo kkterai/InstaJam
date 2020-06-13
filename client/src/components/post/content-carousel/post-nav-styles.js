@@ -1,8 +1,6 @@
-import config from '../../posts/config-styles';
-
 const btn = {
   flex: 1,
-  height: config.imageHeight,
+  height: 150,
   padding: 20,
   fontSize: 50,
   background: 'transparent',
