@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-youtube';
 
+import styles from './slide-styles.js';
+
 function Slide(props) {
   const opts = {
     height: '390',
@@ -21,7 +23,7 @@ function Slide(props) {
   }
 
   return (
-    <article style={props.style} className={props.root}>
+    <article style={{ ...styles.root, ...props.style }}>
       {contentJsx}
     </article>
   )
