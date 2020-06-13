@@ -74,10 +74,6 @@ class PostItem extends Component {
   }
 
   render() {
-
-    console.log(`post number ${this.props.post._id}`)
-    console.log(this.props.post.contents)
-    
     const { post, auth, showActions } = this.props;
     const contentCollection = post.contents.map( content => <div key={content._id}><Slide style={styles} content={content} /></div>)
 
