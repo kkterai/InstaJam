@@ -14,11 +14,18 @@ function Slide(props) {
 
   let contentStr = props.content.content
   let contentJsx;
+
+  if (contentStr && contentStr.match(/youtu.be/)) {
+    let youTubeId = contentStr.replace(/^(https:\/\/)?[a-z0-9]+([.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?\W/,'');
+    contentJsx = <ReactPlayer videoId={youTubeId} opts={opts} />
+  } 
   
-  if (contentStr && contentStr.match(/youtube/)) {
+  else if (contentStr && contentStr.match(/youtube/)) {
     let youTubeId = contentStr.replace(/^[^_]*=/,'');
     contentJsx = <ReactPlayer videoId={youTubeId} opts={opts} />
-  } else {
+  } 
+  
+  else {
     contentJsx = <img src={contentStr} alt={contentStr} /> 
   }
 
