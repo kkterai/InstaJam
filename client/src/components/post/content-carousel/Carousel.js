@@ -18,7 +18,7 @@ function renderSlides(props) {
 
 function Carousel(props) {
   return (
-    <div className={styles.root}>
+    <div style={styles.root}>
       {renderSlides(props)}
       {props.nav}
     </div>
