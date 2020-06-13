@@ -6,11 +6,40 @@ import { Link } from 'react-router-dom';
 
 import CommentForm from '../post/CommentForm';
 import CommentFeed from '../post/CommentFeed';
+// Content carousel imports
+import Carousel from '../post/content-carousel/Carousel';
+import Frame from '../post/content-carousel/Frame';
+import PostNav from '../post/content-carousel/PostNav';
+import Slide from '../post/content-carousel/Slide';
+
 import { getPost, deletePost, addLike, removeLike } from '../../actions/postActions';
-import ReactPlayer from 'react-youtube';
+
 import styles from './post-item-styles.js'
 
+
 class PostItem extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClickPrevious = this.handleClickPrevious.bind(this)
+    this.handleClickNext = this.handleClickNext.bind(this)
+
+    this.state = {
+      showIndex: 0,
+      numSlides: this.props.post.contents.length
+    }
+  }
+
+  handleClickPrevious() {
+    this.setState({
+      showIndex: Math.max(this.state.showIndex - 1, 0)
+    })
+  }
+
+  handleClickNext() {
+    this.setState({
+      showIndex: Math.min(this.state.showIndex + 1, this.state.numSlides - 1)
+    })
+  }
 
   onDeleteClick(id) {
     this.props.deletePost(id);
@@ -33,31 +62,26 @@ class PostItem extends Component {
     }
   }
 
+  renderNav() {
+    return (
+      <PostNav
+        onPrevious={this.handleClickPrevious}
+        hasPrevious={this.state.showIndex > 0}
+        onNext={this.handleClickNext}
+        hasNext={this.state.showIndex < this.state.numSlides - 1}
+      />
+    )
+  }
+
   render() {
     const { post, auth, showActions } = this.props;
+    const contentCollection = post.contents.map( content => <div key={content._id}><Slide style={styles} content={content} /></div>)
 
-    const renderContent = () => {
-        const opts = {
-          height: '390',
-          width: '640',
-          playerVars: {
-            // autoplay: 1
-          }
-        };
-
-        if (post.content && post.content.match(/youtube/)) {
-          let youTubeId = post.content.replace(/^[^_]*=/,'');
-          return <ReactPlayer videoId={youTubeId} opts={opts} />
-        }
-          return <img src={post.content} alt={post.content} />
-      }
-    
     let datePub = new Date(post.date);
     let now = new Date();
     let dateDiff = now.getTime() - datePub.getTime();
     let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24))
-    
-    
+  
     return (
       <article style={styles.root} className="post-item">
         <header className="post-item-hdr">
@@ -70,11 +94,20 @@ class PostItem extends Component {
           </Link>
           <span>{post.username}</span>
         </header>
-        <div className="post-item-content" >
-          <div className="box"> 
-            {renderContent()}
+        <Frame>
+          <div className="post-item-content" >
+            <div className="box"> 
+              <Carousel
+                showIndex={this.state.showIndex}
+                nav={this.renderNav()}
+                width={640}
+                content={contentCollection}
+              >
+              </Carousel>
+            </div>
           </div>
-        </div>
+        </Frame>
+        
         <div className="post-social" >
           <section className="interaction-btns">
             {showActions ? (
