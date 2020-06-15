@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import PostInput from './PostInput';
 import { addPost } from '../../actions/postActions';
 
 class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      caption: '',
-      content: '',
+      fields: [],
       toggleModal: this.props.toggleModal,
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.updateContent = this.updateContent.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.addField = this.addField.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -24,28 +24,37 @@ class PostForm extends Component {
     }
   }
 
+  addField() {
+    this.setState({ fields: [...this.state.fields, { content: ''}] });
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     const { user } = this.props.auth;
 
     const newPost = {
-      caption: this.state.caption,
-      content: this.state.content,
+      contents: this.state.fields,
       username: user.username,
       avatar: user.avatar
     };
 
     this.props.addPost(newPost);
-    this.setState({ caption: '', content: '' });
+    this.setState({ fields: [] });
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  updateContent(index) {
+    return (e) => {
+      const newField = {content: e.target.value}
+      this.setState({fields: [...this.state.fields.slice(0,index), newField, ...this.state.fields.slice(index+1)]})
+    }
   }
 
   render() {
-    const { errors } = this.state;
+
+    const fields = this.state.fields.map((field, index) => {
+      return <PostInput key={ index } updateContent={this.updateContent(index)} content={field.content} />
+    });
 
     return (
       <div className="post-form mb-3">
@@ -53,23 +62,9 @@ class PostForm extends Component {
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
             <div className="form-group">
-                <TextAreaFieldGroup
-                  placeholder="Your media here"
-                  name="content"
-                  value={this.state.content}
-                  onChange={this.onChange}
-                  error={errors.content}
-                />
+              {fields}
               </div>
-              <div className="form-group">
-                <TextAreaFieldGroup
-                  placeholder="Your caption here"
-                  name="caption"
-                  value={this.state.caption}
-                  onChange={this.onChange}
-                  error={errors.caption}
-                />
-              </div>
+              <button type="button" onClick={ this.addField }> Add Content </button>
               <button type="submit" className="btn btn-dark">
                 Submit
               </button>

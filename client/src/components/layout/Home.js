@@ -6,7 +6,7 @@ import PostFeed from '../posts/PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
 
-import configStyles from './config-styles.js'
+import configStyles from '../posts/config-styles.js'
 
 class Home extends Component {
 

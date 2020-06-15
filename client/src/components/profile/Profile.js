@@ -11,6 +11,7 @@ import { getProfileByusername } from '../../actions/profileActions';
 
 class Profile extends Component {
   componentDidMount() {
+    debugger
     if (this.props.match.params.username) {
       this.props.getProfileByusername(this.props.match.params.username);
     }

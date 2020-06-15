@@ -9,10 +9,14 @@ const PostSchema = new Schema({
   caption: {
     type: String
   },
-  content: {
-    type: Schema.Types.Mixed,
-    required: true
-  },
+  contents: [
+    {
+      content: {
+        type: Schema.Types.Mixed,
+        required: true
+      }
+    }
+  ],
   username: {
     type: String
   },
