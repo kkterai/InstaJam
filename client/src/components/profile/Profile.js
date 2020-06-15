@@ -51,7 +51,7 @@ class Profile extends Component {
       <div className="profile">
         <div className="container">
           <div className="row">
-          This is my profile
+           <h1> My Profile </h1>
             <div className="col-md-12">{profileContent}</div>
           </div>
         </div>

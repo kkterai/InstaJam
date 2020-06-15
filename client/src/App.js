@@ -57,8 +57,9 @@ function App() {
             <Navbar toggleModal={setModal} modalState={modalState}/>
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
+   
               <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profiles/:username" component={Profile} />
+              <Route exact path="/profile" component={Profile} />
               <Switch>
                 <PrivateRoute
                   exact

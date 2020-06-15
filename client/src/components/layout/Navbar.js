@@ -7,9 +7,13 @@ import { connect } from 'react-redux';
 import PostModal from '../posts/PostModal';
 
 import { logoutUser } from '../../actions/authActions';
-import { clearCurrentProfile } from '../../actions/profileActions';
+import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   
   onLogoutClick(e) {
     e.preventDefault();
@@ -25,7 +29,7 @@ class Navbar extends Component {
 
   render() {
     let userProfile = this.props.profile.profile;
-    let conditional = (isEmpty(userProfile)) ? '/create-profile' : '/profiles/:username';
+    let conditional = (isEmpty(userProfile)) ? '/create-profile' : '/profile';
 
     return (
       !isEmpty(localStorage.jwtToken) ?
@@ -73,4 +77,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(withRouter(Navbar));
+export default connect(mapStateToProps, { getCurrentProfile, logoutUser, clearCurrentProfile })(withRouter(Navbar));
