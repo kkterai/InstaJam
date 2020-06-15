@@ -31,11 +31,6 @@ router.post(
     if (req.body.followernumber) profileFields.followernumber = req.body.followernumber;
     if (req.body.followingnumber) profileFields.followingnumber = req.body.followingnumber;
     if (req.body.name) profileFields.name = req.body.name;
-
-    // Posts - Spilt into array
-    if (typeof req.body.posts !== 'undefined') {
-      profileFields.posts = req.body.posts.split(',');
-    }
     
     Profile.findOne({ user: req.user.id })
     .then(profile => {
