@@ -27,10 +27,11 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.username) profileFields.username = req.body.username;
-    if (req.body.postnumber) profileFields.postnumber = req.body.postnumber;
-    if (req.body.followernumber) profileFields.followernumber = req.body.followernumber;
-    if (req.body.followingnumber) profileFields.followingnumber = req.body.followingnumber;
+    if (req.body.phone) profileFields.phone = req.body.phone;
+    if (req.body.website) profileFields.website = req.body.website;
     if (req.body.name) profileFields.name = req.body.name;
+    if (req.body.bio) profileFields.bio = req.body.bio;
+    if (req.body.email) profileFields.email = req.body.email;
     
     Profile.findOne({ user: req.user.id })
     .then(profile => {
@@ -68,7 +69,7 @@ router.get('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const errors = {};
-
+    debugger;
     Profile.findOne({user: req.user.id})
       .populate('user', ['name', 'avatar'])
       .then(profile => {
