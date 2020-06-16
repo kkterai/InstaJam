@@ -57,22 +57,17 @@ function App() {
             <Navbar toggleModal={setModal} modalState={modalState}/>
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
-   
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile" component={Profile} />
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/create-profile"
-                  component={CreateProfile}
-                />
+                <PrivateRoute exact path="/profile" component={Profile} />
               </Switch>
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
+                <PrivateRoute exact path="/profiles" component={Profiles} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/home" component={Home}/> 
