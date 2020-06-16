@@ -10,8 +10,8 @@ import ProfileAbout from './ProfileAbout';
 import { getProfileByusername } from '../../actions/profileActions';
 
 class Profile extends Component {
+  
   componentDidMount() {
-    debugger
     if (this.props.match.params.username) {
       this.props.getProfileByusername(this.props.match.params.username);
     }
@@ -35,7 +35,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-md-6">
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
+                To Profiles
               </Link>
               <ProfileHeader profile={profile} />
               <ProfileAbout profile={profile} />
