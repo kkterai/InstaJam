@@ -49,6 +49,7 @@ export const getProfileByusername = username => dispatch => {
 
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
+  debugger;
   axios
     .post('/api/profile', profileData)
     .then(res => history.push('/profile'))
@@ -66,10 +67,11 @@ export const getProfiles = () => dispatch => {
   axios
     .get('/api/profile/all')
     .then(res =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
+      console.log(res.body)
+      // dispatch({
+      //   type: GET_PROFILES,
+      //   payload: res.data
+      // })
     )
     .catch(err =>
       dispatch({
