@@ -10,38 +10,47 @@ class ProfileHeader extends Component {
     const firstName = profile.user.name.trim().split(' ')[0];
 
     return (
-            <header>
-              <div className="col-4 col-md-3 m-auto">
-                <img
-                  className="rounded-circle"
-                  src={profile.user.avatar}
-                  alt=""
-                />
-              </div>
-            <section>
-              <div className="profile-info">
-                <h1>{profile.username}</h1>
-                <div className="edit-profile">
-                  <button className="btn btn-outline-secondary">Edit Profile</button>
-                </div>
-                <h3>{profile.posts.length} posts</h3>
-                <h3>{profile.followers.length} followers</h3>
-                <h3>{profile.following.length} following</h3>
-                <h3>
-                  {isEmpty(profile.website) ? null : (
-                    <a
-                      href={profile.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    > {profile.website}
-                    </a>
-                  )}
-                </h3>
-                <h3 className="bio">{profile.bio}</h3>
-              </div>
-            </section>
+      <header>
+        <div className="profile-image">
+          <img
+            className="rounded-circle"
+            src={profile.user.avatar}
+            alt=""
+          />
+        </div>
+        <section className="profile-right">
+          <div className="profile-info">
+            <h1 className="profile-username">{profile.username}</h1>
+            <div className="edit-profile-button">
+              <button className="btn btn-outline-secondary">Edit Profile</button>
+            </div>
+            <br></br>
+            <ul className="profile-stats">
+              <li className="stat-list">
+                <span> {profile.posts.length} posts </span>
+              </li>
+              <li className="stat-list">
+                <span> {profile.followers.length} followers </span>
+              </li>
+              <li className="stat-list">
+                <span> {profile.following.length} following </span>
+              </li>
+            </ul>
             
-          </header>
+            <h4>
+              {isEmpty(profile.website) ? null : (
+                <a
+                  href={profile.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                > {profile.website}
+                </a>
+              )}
+            </h4>
+            <h4 className="bio">{profile.bio}</h4>
+          </div>
+        </section>
+      </header>
     );
   }
 }

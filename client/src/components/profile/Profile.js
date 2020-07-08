@@ -30,26 +30,16 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
-          <div className="row">
-            <div className="col-md-6">
-              <ProfileHeader profile={profile} />
-              <ProfilePosts profile={profile} />
-            </div>
-            <div className="col-md-6" />
-          </div>
+        <div className="profile-wrapper">
+          <ProfileHeader profile={profile} />
+          <ProfilePosts profile={profile} />
         </div>
       );
     }
 
     return (
-      
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
-          </div>
-        </div>
+      <div className="user-profile">
+        {profileContent}
       </div>
     );
   }

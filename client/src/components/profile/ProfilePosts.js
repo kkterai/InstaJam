@@ -6,8 +6,8 @@ class ProfilePosts extends Component {
   render() {
     
     return (
-      <div className="row">
-       
+      <div className="user-posts">
+        User posts here
       </div>
     );
   }
