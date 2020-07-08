@@ -31,6 +31,17 @@ router.get('/', (req, res) => {
         res.status(404).json({ nopostfound: 'No post found with that ID' })
       );
   });
+
+  // @route   GET api/posts/:user_id
+  // @desc    Get post by user id
+  // @access  Public
+  router.get('/user/_id', (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => res.json(post))
+      .catch(err =>
+        res.status(404).json({ nopostfound: 'No post found with that ID' })
+      );
+  });
   
   // @route   POST api/posts
   // @desc    Create post
