@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PostFeed from '../posts/PostFeed';
 import Spinner from '../common/Spinner';
 import { getPosts } from '../../actions/postActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 import configStyles from '../posts/config-styles.js'
 
@@ -12,6 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getPosts();
+    this.props.getCurrentProfile();
   }
 
   render() {
@@ -45,7 +47,8 @@ Home.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { getPosts })(withRouter(Home));
+export default connect(mapStateToProps, { getPosts, getCurrentProfile })(withRouter(Home));

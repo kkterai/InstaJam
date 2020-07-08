@@ -27,10 +27,11 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.username) profileFields.username = req.body.username;
-    if (req.body.postnumber) profileFields.postnumber = req.body.postnumber;
-    if (req.body.followernumber) profileFields.followernumber = req.body.followernumber;
-    if (req.body.followingnumber) profileFields.followingnumber = req.body.followingnumber;
+    if (req.body.phone) profileFields.phone = req.body.phone;
+    if (req.body.website) profileFields.website = req.body.website;
     if (req.body.name) profileFields.name = req.body.name;
+    if (req.body.bio) profileFields.bio = req.body.bio;
+    if (req.body.email) profileFields.email = req.body.email;
     
     Profile.findOne({ user: req.user.id })
     .then(profile => {
@@ -68,7 +69,7 @@ router.get('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const errors = {};
-
+    debugger;
     Profile.findOne({user: req.user.id})
       .populate('user', ['name', 'avatar'])
       .then(profile => {
@@ -76,10 +77,31 @@ router.get('/',
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
+        console.log(profile)
         res.json(profile);
       })
       .catch(err => res.status(404).json(err));
   }
 )
+
+// @route   GET api/profile/username/:username
+// @desc    Get profile by username
+// @access  Public
+
+router.get('/username/:username', (req, res) => {
+  const errors = {};
+
+  Profile.findOne({ username: req.params.username })
+    .populate('user', ['name', 'avatar'])
+    .then(profile => {
+      if (!profile) {
+        errors.noprofile = 'There is no profile for this user';
+        res.status(404).json(errors);
+      }
+
+      res.json(profile);
+    })
+    .catch(err => res.status(404).json(err));
+});
 
 module.exports = router;

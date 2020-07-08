@@ -25,7 +25,6 @@ class CreateProfile extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +34,6 @@ class CreateProfile extends Component {
 
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-
       // Set component fields state
       this.setState({
         name: profile.name,

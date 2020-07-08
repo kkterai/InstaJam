@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import ProfileHeader from './ProfileHeader';
-import ProfileAbout from './ProfileAbout';
+import ProfilePosts from './ProfilePosts';
 
 
 import { getProfileByusername } from '../../actions/profileActions';
 
 class Profile extends Component {
+  
   componentDidMount() {
-    debugger
     if (this.props.match.params.username) {
       this.props.getProfileByusername(this.props.match.params.username);
     }
@@ -31,30 +30,16 @@ class Profile extends Component {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
-              </Link>
-              <ProfileHeader profile={profile} />
-              <ProfileAbout profile={profile} />
-            </div>
-            <div className="col-md-6" />
-          </div>
+        <div className="profile-wrapper">
+          <ProfileHeader profile={profile} />
+          <ProfilePosts profile={profile} />
         </div>
       );
     }
 
     return (
-      
-      <div className="profile">
-        <div className="container">
-          <div className="row">
-          This is my profile
-            <div className="col-md-12">{profileContent}</div>
-          </div>
-        </div>
+      <div className="user-profile">
+        {profileContent}
       </div>
     );
   }

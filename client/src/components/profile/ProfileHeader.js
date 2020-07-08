@@ -1,40 +1,56 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import isEmpty from '../../validation/is-empty';
 
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
+    // Get first name
+    const firstName = profile.user.name.trim().split(' ')[0];
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
-            <div className="row">
-              <div className="col-4 col-md-3 m-auto">
-                <img
-                  className="rounded-circle"
-                  src={profile.user.avatar}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="text-center">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
-              <p>
-                {isEmpty(profile.website) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={profile.website}
-                    target="_blank"
-                  >
-                    <i className="fas fa-globe fa-2x" />
-                  </a>
-                )}
-              </p>
-            </div>
-          </div>
+      <header>
+        <div className="profile-image">
+          <img
+            className="rounded-circle"
+            src={profile.user.avatar}
+            alt=""
+          />
         </div>
-      </div>
+        <section className="profile-right">
+          <div className="profile-info">
+            <h1 className="profile-username">{profile.username}</h1>
+            {/* <div className="edit-profile-button">
+              <button className="btn btn-outline-secondary">Edit Profile</button>
+            </div> */}
+            <br></br>
+            <ul className="profile-stats">
+              <li className="stat-list">
+                <span> {profile.posts.length} posts </span>
+              </li>
+              <li className="stat-list">
+                <span> {profile.followers.length} followers </span>
+              </li>
+              <li className="stat-list">
+                <span> {profile.following.length} following </span>
+              </li>
+            </ul>
+            
+            <h4>
+              {isEmpty(profile.website) ? null : (
+                <a
+                  href={profile.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                > {profile.website}
+                </a>
+              )}
+            </h4>
+            <h4 className="bio">{profile.bio}</h4>
+          </div>
+        </section>
+      </header>
     );
   }
 }
