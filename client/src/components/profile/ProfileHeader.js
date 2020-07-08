@@ -21,9 +21,9 @@ class ProfileHeader extends Component {
         <section className="profile-right">
           <div className="profile-info">
             <h1 className="profile-username">{profile.username}</h1>
-            <div className="edit-profile-button">
+            {/* <div className="edit-profile-button">
               <button className="btn btn-outline-secondary">Edit Profile</button>
-            </div>
+            </div> */}
             <br></br>
             <ul className="profile-stats">
               <li className="stat-list">
