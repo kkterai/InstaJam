@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import isEmpty from '../../validation/is-empty';
 
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
+    // Get first name
+    const firstName = profile.user.name.trim().split(' ')[0];
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
-            <div className="row">
+            <header>
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
@@ -17,25 +18,30 @@ class ProfileHeader extends Component {
                   alt=""
                 />
               </div>
-            </div>
-            <div className="text-center">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
-              <p>
-                {isEmpty(profile.website) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={profile.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fas fa-globe fa-2x" />
-                  </a>
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <section>
+              <div className="profile-info">
+                <h1>{profile.username}</h1>
+                <div className="edit-profile">
+                  <button className="btn btn-outline-secondary">Edit Profile</button>
+                </div>
+                <h3>{profile.posts.length} posts</h3>
+                <h3>{profile.followers.length} followers</h3>
+                <h3>{profile.following.length} following</h3>
+                <h3>
+                  {isEmpty(profile.website) ? null : (
+                    <a
+                      href={profile.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    > {profile.website}
+                    </a>
+                  )}
+                </h3>
+                <h3 className="bio">{profile.bio}</h3>
+              </div>
+            </section>
+            
+          </header>
     );
   }
 }
