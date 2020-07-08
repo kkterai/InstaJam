@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Spinner from '../common/Spinner';
 import ProfileHeader from './ProfileHeader';
-import ProfileAbout from './ProfileAbout';
+import ProfilePosts from './ProfilePosts';
 
 
 import { getProfileByusername } from '../../actions/profileActions';
@@ -34,11 +33,8 @@ class Profile extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                To Profiles
-              </Link>
               <ProfileHeader profile={profile} />
-              <ProfileAbout profile={profile} />
+              <ProfilePosts profile={profile} />
             </div>
             <div className="col-md-6" />
           </div>
@@ -51,7 +47,6 @@ class Profile extends Component {
       <div className="profile">
         <div className="container">
           <div className="row">
-           <h1> My Profile </h1>
             <div className="col-md-12">{profileContent}</div>
           </div>
         </div>
