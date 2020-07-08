@@ -41,6 +41,9 @@ class Navbar extends Component {
                   Instagram
                 </a>
               </div>
+              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+                Find People
+              </Link>
               <div className="new-post-modal">
                 <button className="btn btn-outline-secondary" onClick={this.onNewPostClick.bind(this)}>New Post</button>
               </div>
