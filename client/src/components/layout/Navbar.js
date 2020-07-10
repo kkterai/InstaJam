@@ -57,7 +57,7 @@ class Navbar extends Component {
               <div className="nav-profile">
                 <Link to={conditional} >
                 <img
-                    className="rounded-circle d-none d-md-block"
+                    className="rounded-circle"
                     src={this.props.auth.user.avatar}
                     alt=""
                     onClick={this.onProfileClick.bind(this)}

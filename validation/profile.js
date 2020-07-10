@@ -3,7 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = function validateProfileInput(data) {
   let errors = {};
-  console.log(data)
+
   data.username = !isEmpty(data.username) ? data.username : '';
   data.name = !isEmpty(data.name) ? data.name : '';
 

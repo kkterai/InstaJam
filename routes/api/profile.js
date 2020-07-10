@@ -15,7 +15,6 @@ router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    console.log(req.body)
     const { errors, isValid } = validateProfileInput(req.body);
     // Check Validation
     if (!isValid) {
@@ -69,7 +68,6 @@ router.get('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const errors = {};
-    debugger;
     Profile.findOne({user: req.user.id})
       .populate('user', ['name', 'avatar'])
       .then(profile => {
@@ -77,7 +75,6 @@ router.get('/',
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
-        console.log(profile)
         res.json(profile);
       })
       .catch(err => res.status(404).json(err));

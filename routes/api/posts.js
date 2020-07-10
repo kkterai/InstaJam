@@ -245,9 +245,6 @@ router.get('/', (req, res) => {
   
       Post.findById(req.params.id)
         .then(post => {
-          console.log(`Req is ${req}`)
-          console.log(`Post is ${post}`)
-          console.log(`Post contents is ${post.contents}`)
           const newContent = {
             content: req.content
           };
