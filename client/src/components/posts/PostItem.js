@@ -80,12 +80,15 @@ class PostItem extends Component {
     let datePub = new Date(post.date);
     let now = new Date();
     let dateDiff = now.getTime() - datePub.getTime();
-    let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24))
-  
+    let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24));
+
+    let username = this.props.post.username;
+    let profileLink = `/profile/${username}`
+
     return (
       <article style={styles.root} className="post-item">
         <header className="post-item-hdr">
-          <Link to="/profile">
+          <Link to={profileLink}>
             <img
               className="rounded-circle d-none d-md-block"
               src={post.avatar}
