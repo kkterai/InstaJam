@@ -5,7 +5,6 @@ import Spinner from '../common/Spinner';
 import ProfileHeader from './ProfileHeader';
 import ProfilePosts from './ProfilePosts';
 
-
 import { getProfileByusername } from '../../actions/profileActions';
 
 class Profile extends Component {
@@ -25,7 +24,6 @@ class Profile extends Component {
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
-
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {

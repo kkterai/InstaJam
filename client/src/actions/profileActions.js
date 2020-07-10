@@ -32,7 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByusername = username => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/username/${username}`)
+    .get(`/api/profile/${username}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
