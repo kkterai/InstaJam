@@ -24,7 +24,6 @@ import './index.css';
 import PrivateRoute from './components/common/PrivateRoute';
 
 
-
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -58,10 +57,13 @@ function App() {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
               <Switch>
+                <Route path="/profile/username/:username" component={Profile} />
+              </Switch>
+              <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/profiles" component={Profiles} />
+                <PrivateRoute exact path="/profile/all" component={Profiles} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
