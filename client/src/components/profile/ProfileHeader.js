@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import isEmpty from '../../validation/is-empty';
 
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
-    // Get first name
-    const firstName = profile.user.name.trim().split(' ')[0];
 
     return (
       <header>
