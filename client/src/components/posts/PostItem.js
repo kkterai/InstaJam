@@ -83,7 +83,7 @@ class PostItem extends Component {
     let diffInDays = Math.floor(dateDiff/(1000 * 3600 * 24));
 
     let username = this.props.post.username;
-    let profileLink = `/profile/${username}`
+    let profileLink = `/profile/username/${username}`
 
     return (
       <article style={styles.root} className="post-item">

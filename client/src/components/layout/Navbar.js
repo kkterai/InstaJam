@@ -11,6 +11,11 @@ import { getCurrentProfile, clearCurrentProfile } from '../../actions/profileAct
 
 class Navbar extends Component {
 
+  onProfileClick() {
+    this.props.getCurrentProfile();
+    this.props.history.push(`/profile/username/${this.props.auth.user.username}`);
+  }
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
@@ -25,7 +30,7 @@ class Navbar extends Component {
 
   render() {
     let userProfile = this.props.profile.profile;
-    let conditional = (isEmpty(userProfile)) ? '/create-profile' : `/profile/${userProfile.username}`;
+    let conditional = (isEmpty(userProfile)) ? '/create-profile' : `/profile/username/${this.props.auth.user.username}`;
    
     return (
       !isEmpty(localStorage.jwtToken) ?
@@ -37,7 +42,7 @@ class Navbar extends Component {
                   Instagram
                 </a>
               </div>
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+              <Link to="/profile/all" className="btn btn-light mb-3 float-left">
                 Find People
               </Link>
               <div className="new-post-modal">
@@ -55,6 +60,7 @@ class Navbar extends Component {
                     className="rounded-circle d-none d-md-block"
                     src={this.props.auth.user.avatar}
                     alt=""
+                    onClick={this.onProfileClick.bind(this)}
                   />
                 </Link>
               </div>

@@ -32,7 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByusername = username => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/${username}`)
+    .get(`/api/profile/username/${username}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -67,11 +67,10 @@ export const getProfiles = () => dispatch => {
   axios
     .get('/api/profile/all')
     .then(res =>
-      console.log(res.body)
-      // dispatch({
-      //   type: GET_PROFILES,
-      //   payload: res.data
-      // })
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
     )
     .catch(err =>
       dispatch({
